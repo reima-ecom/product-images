@@ -1,0 +1,27 @@
+<html>
+  <head></head>
+  <body>
+    {{ .Content }}
+    {{ partial "product-images" "5102964650056" }}
+    {{ partial "product-images" (slice
+      "5102976760120"
+      "5102976760120"
+      "5102974650120"
+      "5102974650120"
+      "5102976760120"
+      "5102972720120"
+    ) }}
+  </body>
+</html>
+
+{{ define "partials/product-images.html" }}
+<section>
+  <h1>Product images for "{{.}}"</h1>
+  {{ range (partial "get-variant-images" .) }}
+  <figure>
+    <img src="{{.RelPermalink}}" width="100" alt="{{.}}" loading="lazy">
+    <figcaption>{{.}}</figcaption>
+  </figure>
+  {{ end }}
+</section>
+{{ end }}

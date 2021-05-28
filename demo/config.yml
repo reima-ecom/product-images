@@ -1,0 +1,7 @@
+disableKinds:
+  - taxonomy
+  - term
+module:
+  replacements: github.com/reima-ecom/product-images -> ../../
+  imports:
+    - path: github.com/reima-ecom/product-images

@@ -1,0 +1,17 @@
+<!--
+INPUT: Either a slice of variant SKU strings or a single variant SKU string
+OUTPUT: (Deduplicated) list of variant images
+-->
+{{- $contentPage := site.GetPage "product-images" }}
+{{- $images := slice }}
+{{- if reflect.IsSlice . }}
+{{- range . }}
+{{- $images = $images | append (partial "get-variant-images" .) }}
+{{- end }}
+{{- $images = uniq $images }}
+{{- else }}
+{{- $product := substr . 0 6 }}
+{{- $color := substr . 6 4 }}
+{{- $images = $contentPage.Resources.Match (printf "%s-%s/*" $product $color) }}
+{{- end }}
+{{- return $images }}
