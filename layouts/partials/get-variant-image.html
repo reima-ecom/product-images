@@ -1,0 +1,8 @@
+<!--
+INPUT: SKU string
+OUTPUT: First image resource for variant
+-->
+{{- $contentPage := site.GetPage "product-images" }}
+{{- $product := substr . 0 6 }}
+{{- $color := substr . 6 4 }}
+{{- return $contentPage.Resources.GetMatch (printf "%s-%s/*" $product $color) }}
